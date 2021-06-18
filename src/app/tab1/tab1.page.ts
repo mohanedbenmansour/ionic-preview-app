@@ -35,6 +35,14 @@ const themes = {
     light: '',
     medium: '',
     dark: ''
+  },
+  cream:{
+    primary: '#3EB595',
+    secondary: '#FFF447',
+    tertiary: '#C9C9C9',
+    light: '#696969',
+    medium: '#1A1A1A',
+    dark: '#34162A'
   }
 };
 
