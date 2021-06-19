@@ -10,16 +10,51 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-button expand="block" color="medium" (click)="changeTheme('autumn')"
-    >Autumn</ion-button
-  >
-  <ion-button expand="block" color="medium" (click)="changeTheme('night')"
-    >Dark</ion-button
-  >
-  <ion-button expand="block" color="medium" (click)="changeTheme('neon')"
-    >Neon</ion-button
-  >
-  <ion-button expand="block" color="medium" (click)="changeTheme('')"
-    >Default</ion-button
-  >
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary">primary</ion-label>
+      <ion-toggle color="primary" checked></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>disabled</ion-label>
+      <ion-toggle disabled="true" color="primary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label color="danger">danger</ion-label>
+      <ion-toggle color="danger" checked></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="success">success</ion-label>
+      <ion-toggle checked color="success"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" color="secondary">Secondary</ion-button>
+
+  <ion-button expand="full" color="tertiary">Tertiary</ion-button>
+
+  <ion-button expand="full" color="success">Success</ion-button>
+
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+        <div>
+          <ion-button color="light">Light</ion-button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-button color="medium">Medium</ion-button>
+        </div>
+      </ion-col>
+
+      <ion-col>
+        <div>
+          <ion-button color="dark">Dark</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

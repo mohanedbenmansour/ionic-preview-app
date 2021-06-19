@@ -1,69 +1,43 @@
 import { Component, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SocketService } from '../services/socket.service';
 import { ThemeService } from '../services/theme.service';
 
 
-const themes = {
-  autumn: {
-    primary: '#F78154',
-    secondary: '#4D9078',
-    tertiary: '#B4436C',
-    light: '#FDE8DF',
-    medium: '#FCD0A2',
-    dark: '#B89876'
-  },
-  night: {
-    primary: '#8CBA80',
-    secondary: '#FCFF6C',
-    tertiary: '#FE5F55',
-    medium: '#BCC2C7',
-    dark: '#F7F7FF',
-    light: '#495867'
-  },
-  neon: {
-    primary: '#39BFBD',
-    secondary: '#4CE0B3',
-    tertiary: '#FF5E79',
-    light: '#F4EDF2',
-    medium: '#B682A5',
-    dark: '#34162A'
-  },
-  custom:{
-    primary: '',
-    secondary: '',
-    tertiary: '',
-    light: '',
-    medium: '',
-    dark: ''
-  },
-  cream:{
-    primary: '#3EB595',
-    secondary: '#FFF447',
-    tertiary: '#C9C9C9',
-    light: '#696969',
-    medium: '#1A1A1A',
-    dark: '#34162A'
-  }
-};
-
+let theme:any;
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  custom:{
+    primary: '#3880ff',
+    secondary: '#0cd1e8',
+    tertiary: '#7044ff',
+    success: '#10dc60',
+    warning: '#ffce00',
+    danger: '#f04141',
+    dark: '#222428',
+    medium: '#989aa2',
+    light: '#f4f5f8'
+  }
+  constructor(private theme: ThemeService,private activatedRoute: ActivatedRoute,private socketService:SocketService ) {
+  }
 
-  constructor(   private theme: ThemeService,private activatedRoute: ActivatedRoute) {
-   
-    this.activatedRoute.queryParams.subscribe(params => {
   
- 
-   this.changeTheme( params['theme'])
+  
+  ngOnInit() {
+   
+  this.socketService
+  .listen('theme')
+  .subscribe(msg => {
+    this.updateTheme(msg)
   });
-  }
 
-  changeTheme(name) {
-    this.theme.setTheme(themes[name]);
-  }
+}
+updateTheme(msg:any){
 
+  this.theme.setTheme(msg);
+}
 }
