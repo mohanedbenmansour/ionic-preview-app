@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import * as Color from 'color';
 import { DOCUMENT } from '@angular/common';
+import { Storage } from '@ionic/storage-angular';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,32 +10,49 @@ export class ThemeService {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    private storage: Storage
 
   ) {
-  
+    this.init();
 
+   if(this.storage){
+    this.getstoredTheme().then(cssText => {
+      this.setGlobalCSS(cssText);
+    });
+     
+   }
    
+  }
+
+  async init() {
+    const storage = await this.storage.create();
   }
 
   setTheme(theme) {
     const cssText = CSSTextGenerator(theme);
     this.setGlobalCSS(cssText);
+    this.storage.set('theme', cssText);
+
   }
   private setGlobalCSS(css: string) {
     this.document.documentElement.style.cssText = css;
+  }
+  async getstoredTheme() {
+    return await  this.storage.get('theme');
   }
 
 }
   const defaults = {
     primary: '#3880ff',
-    secondary: '#0cd1e8',
-    tertiary: '#7044ff',
-    success: '#10dc60',
-    warning: '#ffce00',
-    danger: '#f04141',
+    secondary: '#3dc2ff',
+    tertiary: '#5260ff',
+    success: '#2dd36f',
+    warning: '#ffc409',
+    danger: '#eb445a',
     dark: '#222428',
-    medium: '#989aa2',
+    medium: '#92949c',
     light: '#f4f5f8'
+  
   };
   //css text generator
  function CSSTextGenerator(colors) {
@@ -59,8 +78,8 @@ export class ThemeService {
       --ion-color-contrast: ${dark};
       --ion-background-color: ${light};
       --ion-text-color: ${dark};
-      --ion-toolbar-background-color: ${contrast(light, 0.1)};
-      --ion-toolbar-text-color: ${contrast(dark, 0.1)};
+      --ion-toolbar-background: ${primary};
+      --ion-toolbar-text-color: ${contrast(primary,1)};
       --ion-item-background-color: ${contrast(light, 0.3)};
       --ion-item-text-color: ${contrast(dark, 0.3)};
       --ion-color-primary: ${primary};

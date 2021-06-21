@@ -13,13 +13,13 @@ let theme:any;
 export class Tab1Page {
   custom:{
     primary: '#3880ff',
-    secondary: '#0cd1e8',
-    tertiary: '#7044ff',
-    success: '#10dc60',
-    warning: '#ffce00',
-    danger: '#f04141',
+    secondary: '#3dc2ff',
+    tertiary: '#5260ff',
+    success: '#2dd36f',
+    warning: '#ffc409',
+    danger: '#eb445a',
     dark: '#222428',
-    medium: '#989aa2',
+    medium: '#92949c',
     light: '#f4f5f8'
   }
   constructor(private theme: ThemeService,private activatedRoute: ActivatedRoute,private socketService:SocketService ) {
@@ -33,6 +33,7 @@ export class Tab1Page {
   .listen('theme')
   .subscribe(msg => {
     this.updateTheme(msg)
+    console.log(msg)
   });
 
 }
