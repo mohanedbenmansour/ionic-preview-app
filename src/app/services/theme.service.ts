@@ -15,17 +15,17 @@ export class ThemeService {
   ) {
     this.init();
 
-   if(this.storage){
-    this.getstoredTheme().then(cssText => {
-      this.setGlobalCSS(cssText);
-    });
-     
-   }
-   
+    if (this.storage) {
+      this.getstoredTheme().then(cssText => {
+        this.setGlobalCSS(cssText);
+      });
+
+    }
+
   }
 
   async init() {
-    const storage = await this.storage.create();
+    await this.storage.create();
   }
 
   setTheme(theme) {
@@ -38,48 +38,51 @@ export class ThemeService {
     this.document.documentElement.style.cssText = css;
   }
   async getstoredTheme() {
-    return await  this.storage.get('theme');
+    return await this.storage.get('theme');
+  }
+  async clearStoredTheme() {
+    return await this.storage.clear()
   }
 
 }
-  const defaults = {
-    primary: '#3880ff',
-    secondary: '#3dc2ff',
-    tertiary: '#5260ff',
-    success: '#2dd36f',
-    warning: '#ffc409',
-    danger: '#eb445a',
-    dark: '#222428',
-    medium: '#92949c',
-    light: '#f4f5f8'
-  
-  };
-  //css text generator
- function CSSTextGenerator(colors) {
-    colors = { ...defaults, ...colors };
-  
-    const {
-      primary,
-      secondary,
-      tertiary,
-      success,
-      warning,
-      danger,
-      dark,
-      medium,
-      light
-    } = colors;
-  
-    const shadeRatio = 0.1;
-    const tintRatio = 0.1;
-  
-    return `
+const defaults = {
+  primary: '#3880ff',
+  secondary: '#3dc2ff',
+  tertiary: '#5260ff',
+  success: '#2dd36f',
+  warning: '#ffc409',
+  danger: '#eb445a',
+  dark: '#222428',
+  medium: '#92949c',
+  light: '#f4f5f8'
+
+};
+//css text generator
+function CSSTextGenerator(colors) {
+  colors = { ...defaults, ...colors };
+
+  const {
+    primary,
+    secondary,
+    tertiary,
+    success,
+    warning,
+    danger,
+    dark,
+    medium,
+    light
+  } = colors;
+
+  const shadeRatio = 0.1;
+  const tintRatio = 0.1;
+
+  return `
       --ion-color-base: ${light};
       --ion-color-contrast: ${dark};
       --ion-background-color: ${light};
       --ion-text-color: ${dark};
       --ion-toolbar-background: ${primary};
-      --ion-toolbar-text-color: ${contrast(primary,1)};
+      --ion-toolbar-text-color: ${contrast(primary, 1)};
       --ion-item-background-color: ${contrast(light, 0.3)};
       --ion-item-text-color: ${contrast(dark, 0.3)};
       --ion-color-primary: ${primary};
@@ -136,7 +139,7 @@ export class ThemeService {
       --ion-color-light-contrast-rgb: 0,0,0;
       --ion-color-light-shade: ${Color(light).darken(shadeRatio)};
       --ion-color-light-tint: ${Color(light).lighten(tintRatio)};`;
-  }
+}
 
 function contrast(color, ratio = 0.8) {
   color = Color(color);

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="secondary">
       <ion-button>
         <ion-icon slot="icon-only" name="search"></ion-icon>
@@ -27,17 +27,17 @@
 <ion-content>
   <ion-list class="ion-no-padding">
     <ion-item>
-      <ion-label>Medium Toggle</ion-label>
-      <ion-toggle slot="end" color="medium" name="medium" checked></ion-toggle>
+      <ion-label>Secondary Toggle</ion-label>
+      <ion-toggle
+        slot="end"
+        color="secondary"
+        name="secondary"
+        checked
+      ></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>Disabled Toggle</ion-label>
       <ion-toggle slot="end" checked disabled></ion-toggle>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Danger Toggle</ion-label>
-      <ion-toggle slot="end" color="danger" checked></ion-toggle>
     </ion-item>
 
     <ion-item>
@@ -48,13 +48,15 @@
     <ion-grid class="button-grid">
       <ion-row>
         <ion-col>
-          <ion-button expand="block" color="primary">Aa</ion-button>
+          <ion-button expand="block" color="primary" (click)="defaultTheme()"
+            >Aa</ion-button
+          >
         </ion-col>
         <ion-col>
           <ion-button expand="block" color="secondary">Aa</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button expand="block" color="tertiary">Aa</ion-button>
+          <ion-button expand="block" color="secondary">Aa</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

@@ -10,7 +10,7 @@ import { ThemeService } from '../services/theme.service';
 })
 export class TabsPage {
 
-  custom:{
+  custom: {
     primary: '#3880ff',
     secondary: '#3dc2ff',
     tertiary: '#5260ff',
@@ -21,24 +21,30 @@ export class TabsPage {
     medium: '#92949c',
     light: '#f4f5f8'
   }
-  constructor(private theme: ThemeService,private activatedRoute: ActivatedRoute,private socketService:SocketService ) {
+  constructor(private theme: ThemeService, private activatedRoute: ActivatedRoute, private socketService: SocketService) {
   }
 
-  
-  
+
+
   ngOnInit() {
-   
-  this.socketService
-  .listen('theme')
-  .subscribe(msg => {
-    this.updateTheme(msg)
-    console.log(msg)
-  });
 
-}
-updateTheme(msg:any){
+    this.socketService
+      .listen('theme')
+      .subscribe(msg => {
+        this.updateTheme(msg)
+        console.log(msg)
+      });
 
-  this.theme.setTheme(msg);
-}
+  }
+  defaultTheme() {
+    this.theme.clearStoredTheme().then((data) => {
+      location.reload();
+
+    })
+  }
+  updateTheme(msg: any) {
+
+    this.theme.setTheme(msg);
+  }
 
 }
