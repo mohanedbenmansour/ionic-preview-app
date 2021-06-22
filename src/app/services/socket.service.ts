@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class SocketService {
 
   socket:Socket;
-   url:string="http://localhost:3000"
+   url:string="https://socket-server-preview.herokuapp.com"
   constructor() {
     this.socket=io(this.url);
   }
