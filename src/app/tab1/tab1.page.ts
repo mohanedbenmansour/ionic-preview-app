@@ -41,4 +41,10 @@ updateTheme(msg:any){
 
   this.theme.setTheme(msg);
 }
+defaultTheme() {
+  this.theme.clearStoredTheme().then((data) => {
+    location.reload();
+
+  })
+}
 }

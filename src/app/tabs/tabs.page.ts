@@ -22,6 +22,8 @@ export class TabsPage {
     light: '#f4f5f8'
   }
   constructor(private theme: ThemeService, private activatedRoute: ActivatedRoute, private socketService: SocketService) {
+    //this.theme.setTheme(this.custom);
+
   }
 
 
