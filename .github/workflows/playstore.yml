@@ -28,6 +28,7 @@ jobs:
       - name: Generate apk file 
         run: |
           cd android
+          chmod +x ./gradlew
           fastlane build
           echo generating apk file
       # Runs a set of commands using the runners shell
