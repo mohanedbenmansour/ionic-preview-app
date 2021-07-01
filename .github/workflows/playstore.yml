@@ -1,5 +1,5 @@
 
-name: playstore
+name: playstore CI/CD
 
 # Controls when the workflow will run
 on:
