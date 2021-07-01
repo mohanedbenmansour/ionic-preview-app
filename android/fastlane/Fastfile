@@ -16,7 +16,13 @@
 default_platform(:android)
 
 platform :android do
-  
+  desc "Generate the apk file after building ionic project"
+  lane :build do
+    gradle(
+      task: 'assemble',
+      build_type: 'Release'
+    )
+  end
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
