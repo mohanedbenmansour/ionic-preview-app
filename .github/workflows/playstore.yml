@@ -25,12 +25,12 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Generate apk file 
-        run: |
-          cd android
-          chmod +x ./gradlew
-          fastlane build
-          echo generating apk file
+    #  - name: Generate apk file 
+     #   run: |
+     #     cd android
+    #      chmod +x ./gradlew
+    #      fastlane build
+    #      echo generating apk file
       # Runs a set of commands using the runners shell
       - name: Deploy apk to playstore
         run: |
